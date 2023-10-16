@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript todo app</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://kit.fontawesome.com/fc54a2d167.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="todo-app-body">
+
+        <!-- to do form  -->
+        <form>
+            <input type="text" id="text-input" placeholder="enter something to add">
+
+            <button type="submit" id="submit-btn" class="submit-btn-disabled" disabled>
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </form>
+
+        <div class="task-section">
+            <ul class="tasks"></ul>
+        </div>
+
+    </div>
+
+
+    <script src="./index.js"></script>
+</body>
+
+</html>
