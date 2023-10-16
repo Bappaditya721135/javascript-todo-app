@@ -108,20 +108,16 @@ body {
     width: 30px;
     height: 30px;
     border: none;
-}
-
-.task-complet-btn>i {
-    color: red;
-    font-size: 1.1rem;
-    width: 100%;
-    height: 100%;
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: center;
     border: 1px solid #c19d9d;
+    color: red;
 }
 
-.task-complet-btn>i:hover {
+
+
+.task-complet-btn:hover {
     background-color: red;
     color: white;
     border: 1px solid red;
@@ -130,4 +126,16 @@ body {
 .task-time {
     font-size: 0.7rem;
     color: blue;
+}
+
+
+
+.empty-task {
+    text-align: center;
+    font-size: 1rem;
+    font-family: sans-serif;
+}
+
+.empty-task-none {
+    display: none;
 }

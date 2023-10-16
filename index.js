@@ -1,6 +1,32 @@
 const submitBtn = document.getElementById("submit-btn")
 const taskCotainerUl = document.querySelector(".tasks")
 const inputField = document.getElementById("text-input")
+// const deleteBtns = document.querySelectorAll(".task-complet-btn")
+
+
+
+
+document.addEventListener("DOMContentLoaded",() => {
+    addTaskToDom()
+// }
+// () => {
+//     const tasks = JSON.parse(localStorage.getItem("tasks"));
+//     if(!tasks) {
+//         // document.querySelector(".empty-task").classList.add("empty-task-none")
+//     }
+//     else {
+//         tasks.forEach(task => {
+//             addTaskToUl(task)
+//         })
+//     }
+    
+
+
+    // delete functionality 
+    // const allDelBtns = [...document.querySelectorAll(".task-complet-btn")]
+    // allDelBtns.forEach(btn =>)
+
+})
 
 
 
@@ -17,17 +43,16 @@ const getTaskObj = (task) => {
 }
 
 // this function will add a task to the task container ul 
-function addTaskToUl(task) {
+function addTaskToUl(task, i) {
     console.log("this is ul add function")
     console.log(task.task)
-    const li = `<li class="task">
+    const li = `<li class="task" data-id="${i}">
                     <span class="task-message">${task.task}</span>
                     <span class="task-time">${task.time}</span>
-                    <button class="task-complet-btn">
-                    <i class="fa-solid fa-trash-can"></i>
-                    </button>
+                    <i class="fa-solid fa-trash-can task-complet-btn"></i>
                 </li>`
-
+        document.querySelector(".empty-task").classList.add("empty-task-none")
+        // taskCotainerUl.innerHTML = "";
         taskCotainerUl.insertAdjacentHTML("afterbegin", li)
 }
 
@@ -43,8 +68,11 @@ function addTaskToDom() {
     }
     else {
             // const li = `<li className="task">${</li>`
-        tasks.forEach(task => {
-            addTaskToUl(task)
+            // taskCotainerUl.innerHTML = "";
+        tasks.forEach((task, i) => {
+            console.log("id")
+            console.log(i)
+            addTaskToUl(task, i)
 
         });
     }
@@ -80,7 +108,9 @@ submitBtn.addEventListener("click", (e) => {
     document.getElementById("text-input").value = "";
 
     const latestTask = JSON.parse(localStorage.getItem("tasks")).slice(-1);
-    addTaskToUl(latestTask[0])
+    const id = JSON.parse(localStorage.getItem("tasks")).length - 1;
+    addTaskToUl(latestTask[0], id)
+    // addTaskToDom()
 
     // disable the add btn 
     submitBtn.disabled = true;
@@ -99,4 +129,26 @@ inputField.addEventListener("keyup", (e) => {
         submitBtn.classList.remove("submit-btn-disabled")
     }
     console.log(submitBtn)
+})
+
+
+
+// delete functionality 
+// deleteBtns.addEventListener("click", (e) => {
+taskCotainerUl.addEventListener("click", (e) => {
+    if(e.target === e.currentTarget) {
+        return;
+    }
+    // if(e.target.classList.contains("task-complet-btn")) {
+    //     console.log(e.target)
+    // }
+    else {
+        if(e.target.classList.contains("task-complet-btn")) {
+            const id = Number(e.target.parentElement.dataset.id)
+            const newTasks = JSON.parse(localStorage.getItem("tasks")).filter((task, i) => i !== id)
+            localStorage.setItem("tasks", JSON.stringify(newTasks))
+            location.reload()
+            addTaskToDom()
+        }
+    }
 })
