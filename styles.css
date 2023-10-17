@@ -145,3 +145,39 @@ body {
 .empty-task-none {
     display: none;
 }
+
+
+
+@media (max-width: 620px) {
+    .todo-app-body {
+        padding: 20px;
+    }
+    #text-input {
+        width: 70%;
+    }
+    #text-input::placeholder {
+        font-size: 1rem;
+    }
+
+    /* #submit-btn {
+        position: absolute;
+    } */
+    form {
+        display: flex;
+    }
+    .task {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 580px) {
+    body {
+        padding: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px;
+    }
+}
