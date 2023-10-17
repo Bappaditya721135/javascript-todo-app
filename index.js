@@ -8,24 +8,6 @@ const inputField = document.getElementById("text-input")
 
 document.addEventListener("DOMContentLoaded",() => {
     addTaskToDom()
-// }
-// () => {
-//     const tasks = JSON.parse(localStorage.getItem("tasks"));
-//     if(!tasks) {
-//         // document.querySelector(".empty-task").classList.add("empty-task-none")
-//     }
-//     else {
-//         tasks.forEach(task => {
-//             addTaskToUl(task)
-//         })
-//     }
-    
-
-
-    // delete functionality 
-    // const allDelBtns = [...document.querySelectorAll(".task-complet-btn")]
-    // allDelBtns.forEach(btn =>)
-
 })
 
 
@@ -52,7 +34,6 @@ function addTaskToUl(task, i) {
                     <i class="fa-solid fa-trash-can task-complet-btn"></i>
                 </li>`
         document.querySelector(".empty-task").classList.add("empty-task-none")
-        // taskCotainerUl.innerHTML = "";
         taskCotainerUl.insertAdjacentHTML("afterbegin", li)
 }
 
@@ -67,13 +48,8 @@ function addTaskToDom() {
         return;
     }
     else {
-            // const li = `<li className="task">${</li>`
-            // taskCotainerUl.innerHTML = "";
         tasks.forEach((task, i) => {
-            console.log("id")
-            console.log(i)
             addTaskToUl(task, i)
-
         });
     }
 }
@@ -139,16 +115,14 @@ taskCotainerUl.addEventListener("click", (e) => {
     if(e.target === e.currentTarget) {
         return;
     }
-    // if(e.target.classList.contains("task-complet-btn")) {
-    //     console.log(e.target)
-    // }
     else {
         if(e.target.classList.contains("task-complet-btn")) {
             const id = Number(e.target.parentElement.dataset.id)
             const newTasks = JSON.parse(localStorage.getItem("tasks")).filter((task, i) => i !== id)
             localStorage.setItem("tasks", JSON.stringify(newTasks))
-            location.reload()
-            addTaskToDom()
+            const deletedEl = e.target.parentElement;
+            taskCotainerUl.removeChild(deletedEl)
+
         }
     }
 })
