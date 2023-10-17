@@ -26,8 +26,6 @@ const getTaskObj = (task) => {
 
 // this function will add a task to the task container ul 
 function addTaskToUl(task, i) {
-    console.log("this is ul add function")
-    console.log(task.task)
     const li = `<li class="task" data-id="${i}">
                     <span class="task-message">${task.task}</span>
                     <span class="task-time">${task.time}</span>
@@ -65,9 +63,6 @@ submitBtn.addEventListener("click", (e) => {
     }, 200);
 
     const existingTasks = JSON.parse(localStorage.getItem("tasks")) || ""
-    console.log("existing tasks")
-    console.log(existingTasks)
-
     const task = document.getElementById("text-input").value;
 
     // check if the task is empty
@@ -86,7 +81,6 @@ submitBtn.addEventListener("click", (e) => {
     const latestTask = JSON.parse(localStorage.getItem("tasks")).slice(-1);
     const id = JSON.parse(localStorage.getItem("tasks")).length - 1;
     addTaskToUl(latestTask[0], id)
-    // addTaskToDom()
 
     // disable the add btn 
     submitBtn.disabled = true;
@@ -104,7 +98,6 @@ inputField.addEventListener("keyup", (e) => {
         submitBtn.disabled = false;
         submitBtn.classList.remove("submit-btn-disabled")
     }
-    console.log(submitBtn)
 })
 
 
